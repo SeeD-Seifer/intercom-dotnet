@@ -11,7 +11,9 @@ using Newtonsoft;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
-using RestSharp.Authenticators;
+using RestSharp.Portable;
+using RestSharp.Portable.Authenticators;
+using RestSharp.Portable.HttpClient;
 
 namespace Intercom.Core
 {
@@ -59,7 +61,7 @@ namespace Intercom.Core
             {
                 IRestClient client = BuildClient();
                 IRestRequest request = BuildRequest(httpMethod: Method.GET, headers: headers, parameters: parameters, resource: resource);
-                IRestResponse response = client.Execute(request);
+                IRestResponse response = client.Execute(request).Result;
                 clientResponse = HandleResponse<T>(response);
             }
             catch(ApiException ex)
@@ -97,7 +99,7 @@ namespace Intercom.Core
             {
                 IRestClient client = BuildClient();
                 IRestRequest request = BuildRequest(httpMethod: Method.POST, headers: headers, parameters: parameters, body: body, resource: resource);
-                IRestResponse response = client.Execute(request);
+                IRestResponse response = client.Execute(request).Result;
                 clientResponse = HandleResponse <T>(response);
             }
             catch(ApiException ex)
@@ -136,7 +138,7 @@ namespace Intercom.Core
                 String requestBody = Serialize<T>(body);
                 IRestClient client = BuildClient();
                 IRestRequest request = BuildRequest(httpMethod: Method.POST, headers: headers, parameters: parameters, body: requestBody, resource: resource);
-                IRestResponse response = client.Execute(request);
+                IRestResponse response = client.Execute(request).Result;
                 clientResponse = HandleResponse <T>(response);
             }
             catch(ApiException ex)
@@ -174,7 +176,7 @@ namespace Intercom.Core
             {
                 IRestClient client = BuildClient();
                 IRestRequest request = BuildRequest(httpMethod: Method.PUT, headers: headers, parameters: parameters, body: body, resource: resource);
-                IRestResponse response = client.Execute(request);
+                IRestResponse response = client.Execute(request).Result;
                 clientResponse = HandleResponse <T>(response);
             }
             catch(ApiException ex)
@@ -213,7 +215,7 @@ namespace Intercom.Core
                 String requestBody = Serialize<T>(body);
                 IRestClient client = BuildClient();
                 IRestRequest request = BuildRequest(httpMethod: Method.PUT, headers: headers, parameters: parameters, body: requestBody, resource: resource);
-                IRestResponse response = client.Execute(request);
+                IRestResponse response = client.Execute(request).Result;
                 clientResponse = HandleResponse <T>(response);
             }
             catch(ApiException ex)
@@ -246,7 +248,7 @@ namespace Intercom.Core
             {
                 IRestClient client = BuildClient();
                 IRestRequest request = BuildRequest(httpMethod: Method.DELETE, headers: headers, parameters: parameters, resource: resource);
-                IRestResponse response = client.Execute(request);
+                IRestResponse response = client.Execute(request).Result;
                 clientResponse = HandleResponse<T>(response);
             }
             catch(ApiException ex)

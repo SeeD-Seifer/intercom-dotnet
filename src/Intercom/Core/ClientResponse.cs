@@ -4,6 +4,7 @@ using Intercom.Data;
 using Intercom.Clients;
 using Intercom.Exceptions;
 using RestSharp;
+using RestSharp.Portable;
 
 namespace Intercom.Core
 {
